@@ -7,8 +7,15 @@ public enum GameState { Ready, Playing};
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     public GameState gameState = GameState.Ready;
     public GameObject uiReady;
+
+    void Awake()
+    {
+        Instance = this;   
+    }
 
     void Update()
     {
