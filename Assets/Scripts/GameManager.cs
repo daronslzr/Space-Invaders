@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         {
             gameState = GameState.Playing;
             uiReady.SetActive(false);
+            SpawnManager.Instance.StartSpawn();
         }
     }
 }
