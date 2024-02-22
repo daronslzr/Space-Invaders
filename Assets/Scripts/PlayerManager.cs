@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     public float dirX;
     public float movementVelocity = 7f;
 
+    public GameObject laserAttackPrefab;
+
     void Awake()
     {
         Instance = this;
@@ -23,6 +25,11 @@ public class PlayerManager : MonoBehaviour
             dirX = Input.GetAxisRaw("Horizontal");
             //Moves the player in the x-axis
             rb.velocity = new Vector2(dirX * movementVelocity, rb.velocity.y);
+            //Shoots laser when d or up arrow is pressed
+            if (Input.GetKeyDown("w") || Input.GetKeyDown("up"))
+            {
+                GameObject laserAttack = Instantiate(laserAttackPrefab, transform.position, Quaternion.identity);
+            }
         }
     }
 }
