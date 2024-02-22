@@ -190,3 +190,5 @@ MonoBehaviour:
   xPositionsArray:
   - -6.25
   - 6.25
+  enemyAttackPrefab: {fileID: 2451204494746766961, guid: 4a1fdca9516f83f41ba64ae4e89587c9, type: 3}
+  timeSpent: 0

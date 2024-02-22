@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -19,6 +20,12 @@ public class EnemyManager : MonoBehaviour
     //index for arrays
     int yIndex;
     int xIndex;
+    //Attack prefab
+    public GameObject enemyAttackPrefab;
+    //Time variables
+    public float time = 0f;
+    public float seconds;
+    bool shoot = false;
 
     void Start()
     {
@@ -34,6 +41,8 @@ public class EnemyManager : MonoBehaviour
 
     void Update()
     {
+        EnemyTimer();
+        ShootAttack();
         if (xPositionsArray[xIndex] == -6.25)
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -49,6 +58,21 @@ public class EnemyManager : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+        }
+    }
+
+    void EnemyTimer()
+    {
+        time += Time.deltaTime;
+        seconds = Mathf.FloorToInt(time % 60);
+    }
+
+    void ShootAttack()
+    {
+        if (seconds == 1 && shoot ==false)
+        {
+            GameObject enemyAttack = Instantiate(enemyAttackPrefab);
+            shoot = true;
         }
     }
 }
