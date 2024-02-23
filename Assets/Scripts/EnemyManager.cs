@@ -97,6 +97,6 @@ public class EnemyManager : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         enemyCollission = true;
-        Destroy(rb);
+        Destroy(gameObject);
     }
 }
