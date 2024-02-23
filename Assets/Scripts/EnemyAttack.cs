@@ -11,7 +11,7 @@ public class EnemyAttack : MonoBehaviour
     float yDistance = 0.5f;
     float speed = 2.5f;
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
     }
@@ -27,7 +27,7 @@ public class EnemyAttack : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.down * speed * Time.deltaTime);
-        if (transform.position.y < -5.25)
+        if (transform.position.y < -5.25 || GameManager.Instance.gameState == GameState.Ended)
         {
             Destroy(gameObject);
         }

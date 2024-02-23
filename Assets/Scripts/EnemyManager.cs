@@ -10,8 +10,10 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance { get; private set; }
     public System.Random random = new System.Random();
-    //Object components
+    //Object component
     public PolygonCollider2D polygonCollider;
+    public Rigidbody2D rb;
+    public bool enemyCollission = false;
     //Enemy speed
     public float speed = 3f;
     //Position in y
@@ -52,12 +54,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     void Update()
-    {
-        /*
-        EnemyTimer();
-        ShootAttack();
-        */
-        
+    {   
         //The enemy will move to the right or left depending its value on x
         if (xPositionsArray[xIndex] == -6.25)
         {
@@ -79,21 +76,6 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    void EnemyTimer()
-    {
-        time += Time.deltaTime;
-        seconds = Mathf.FloorToInt(time % 60);
-    }
-
-    void ShootAttack()
-    {
-        if (seconds == 1 && shoot == false)
-        {
-            GameObject enemyAttack = Instantiate(enemyAttackPrefab);
-            shoot = true;
-        }
-    }
-
     //Instantiates the prefab based off the enemy's movement direction 
     void ShootAttackRight()
     {
@@ -111,5 +93,10 @@ public class EnemyManager : MonoBehaviour
             GameObject enemyAttack = Instantiate(enemyAttackPrefab, transform.position, Quaternion.identity);
             shoot = true;
         }
+    }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        enemyCollission = true;
+        Destroy(rb);
     }
 }

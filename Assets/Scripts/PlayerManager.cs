@@ -5,7 +5,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance { get; private set; }
     public Rigidbody2D rb;
     public PolygonCollider2D polygonCollider;
-
+    public bool enemyCollission = false;
     //Variables used for movement
     public float dirX;
     public float movementVelocity = 7f;
@@ -31,5 +31,11 @@ public class PlayerManager : MonoBehaviour
                 GameObject laserAttack = Instantiate(laserAttackPrefab, transform.position, Quaternion.identity);
             }
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        enemyCollission = true;
+        Destroy(rb);
     }
 }
