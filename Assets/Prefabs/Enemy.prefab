@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   polygonCollider: {fileID: 7069338658158118550}
+  rb: {fileID: -4333804152590439002}
   enemyCollission: 0
   speed: 3
   dirY: 0
